@@ -19,7 +19,7 @@ class User{
     }
 
     async register(){
-        this.valida()
+        this.validaRegister()
 
         if(this.errors.length > 0) return 
 
@@ -34,6 +34,26 @@ class User{
         })
     }
 
+    async login(){
+        this.validaLogin()
+
+        if(this.errors.length > 0) return
+
+        this.user = await userModel.findOne({ email: this.body.email })
+
+        if(!this.user){
+            this.errors.push('Usuário não existe')
+            return
+        }
+
+        const passwordMatch = bcrypt.compareSync(this.body.password, this.user.password)
+
+        if(!passwordMatch){
+            this.errors.push('Senha incorreta')
+            return
+        }
+    }
+
     async userExists(){
         this.user = await userModel.findOne({ email: this.body.email })
         if(this.user){
@@ -41,11 +61,21 @@ class User{
         }
     }
 
-    valida(){
+    validaRegister(){
         if(!this.body.name){
             this.errors.push('Nome inválido')
         }
 
+        if(!validator.isEmail(this.body.email)){
+            this.errors.push('E-mail inválido')
+        }
+
+        if(!this.body.password){
+            this.errors.push('Senha inválida')
+        }
+    }
+
+    validaLogin(){
         if(!validator.isEmail(this.body.email)){
             this.errors.push('E-mail inválido')
         }

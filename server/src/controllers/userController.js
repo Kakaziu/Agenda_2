@@ -1,4 +1,5 @@
 const User = require('../models/User')
+const jwt = require('jsonwebtoken')
 
 exports.register = async (req, res) =>{
     const user = new User(req.body)
@@ -9,6 +10,25 @@ exports.register = async (req, res) =>{
         if(user.errors.length > 0) return res.status(400).json({ errors: user.errors })
 
         return res.json(user.user)
+    }catch(error){
+        return res.status(500).json({ error })
+    }
+}
+
+exports.login = async (req, res) =>{
+    const user = new User(req.body)
+
+    try{
+        await user.login()
+
+        if(user.errors.length > 0) return res.status(400).json({ errors: user.errors })
+
+        const token = jwt.sign({ id: user.user._id }, process.env.SECRET)
+
+        return res.json({
+            user: user.user,
+            token: token
+        })
     }catch(error){
         return res.status(500).json({ error })
     }
