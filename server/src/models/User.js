@@ -54,6 +54,12 @@ class User{
         }
     }
 
+    static async findUser(id){
+        const user = await userModel.findOne({ _id: id })
+
+        return user
+    }
+
     async userExists(){
         this.user = await userModel.findOne({ email: this.body.email })
         if(this.user){

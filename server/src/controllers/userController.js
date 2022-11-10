@@ -25,10 +25,24 @@ exports.login = async (req, res) =>{
 
         const token = jwt.sign({ id: user.user._id }, process.env.SECRET)
 
+        res.header('authorization-token', token)
         return res.json({
             user: user.user,
             token: token
         })
+    }catch(error){
+        return res.status(500).json({ error })
+    }
+}
+
+exports.validateToken = async (req, res) =>{
+    const { token } = req.body
+
+    try{
+        const userVerified = jwt.verify(token, process.env.SECRET)
+        const user = await User.findUser(userVerified.id)
+
+        return res.json(user)
     }catch(error){
         return res.status(500).json({ error })
     }
