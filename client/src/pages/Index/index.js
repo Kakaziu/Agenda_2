@@ -1,25 +1,35 @@
-import { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { useContext, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { AuthContext } from '../../contexts/AuthContext'
 import './style.css'
 
 function Index(){
 
-    const login = useContext(AuthContext)
+    const loginContext = useContext(AuthContext)
 
     return(
         <div id='index'>
+            
             <header className='header'>
                 <h2>Agenda</h2>
 
                 <nav>
                     <ul>
-                        <li><Link to='/register'>Entrar</Link></li>
+                        { !loginContext.user ? 
+                        <li><Link to='/login'>Entrar</Link></li> 
+                        
+                        :
+                        <>
+                        <li><button>Cadastrar contatos</button></li>
+                        <li><button onClick={() => loginContext.signout()}>Sair</button></li>
+                        </>
+                        
+                        }
                     </ul>
                 </nav>
             </header>
 
-            { !login.user ? 
+            { !loginContext.user ? 
                 <div className='content'> 
                     <h1>Agenda</h1>
                     <p>Faça login no nosso sistema para salvar seus contatos</p>    
@@ -27,7 +37,7 @@ function Index(){
              :
                 <div className='content'>
                     <h1>Agenda</h1>
-                    <div className='welcomeMessage'> Olá Kauã, seja bem-vindo ao sistema! </div>
+                    <div className='welcomeMessage'> Olá {loginContext.user.name}, seja bem-vindo ao sistema! </div>
 
                     <table className='table'>
                         <tr>

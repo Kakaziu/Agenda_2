@@ -38,7 +38,7 @@
     font-size: 18px;
     margin-bottom: 10px;
     margin-left: 10px;
-    color: #ccc;
+    color: rgb(153, 153, 153);
 }
 
 .form input{
@@ -84,6 +84,9 @@
     color: white;
     font-size: 18px;
     border-radius: 10px;
+    transform: translateX(-50%);
+    left: 50%;
+    text-align: center;
 }
 
 .successMessage{
@@ -93,7 +96,6 @@
 
 .serverErrorMessage{
     background-color: red;
-    text-align: center;
 }
 
 .show{

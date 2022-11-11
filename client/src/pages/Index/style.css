@@ -9,12 +9,25 @@
 
 .header nav ul{
     list-style: none;
+    display: flex;
+}
+
+.header nav ul li{
+    margin-left: 25px;
 }
 
 .header nav ul li a{
     text-decoration: none;
     font-size: 18px;
     color: white;
+}
+
+.header nav ul li button{
+    background-color: transparent;
+    font-size: 18px;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
 
 .content{
@@ -55,3 +68,4 @@
     border-bottom: 1px solid #ccc;
     
 }
+
