@@ -38,8 +38,6 @@ exports.login = async (req, res) =>{
 exports.validateToken = async (req, res) =>{
     const { token } = req.body
 
-    console.log(token)
-
     try{
         const userVerified = jwt.verify(token, process.env.SECRET)
         const user = await User.findUser(userVerified.id)

@@ -69,3 +69,77 @@
     
 }
 
+.table button{
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.edit-btn{
+    color: blue;
+}
+
+.del-btn{
+    color: red;
+}
+
+.modal{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.452);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-form{
+    background-color: white;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.404);
+    padding: 30px;
+    border-radius: 10px;
+    border: 2px solid purple;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+}
+
+.modal-form input{
+    font-size: 17px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.418);
+    outline: 0;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.modal-form h2{
+    font-size: 25px;
+    color: purple;
+    margin-bottom: 30px;
+}
+
+.modal-form button{
+    margin-top: 20px;
+    padding: 10px 25px;
+    background-color: purple;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.modal-form button:hover{
+    transform: scale(1.1);
+}
+
+.none{
+    display: none;
+}

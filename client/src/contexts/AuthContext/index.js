@@ -13,7 +13,7 @@ export function AuthProvider({ children }){
 
             if(token){
                 const response = await api.post('/user/validate', {token})
-
+                api.defaults.headers.common['authorization-token'] = token
                 setUser(response.data)
             }
         }
@@ -34,6 +34,7 @@ export function AuthProvider({ children }){
             if(response.data.user && response.data.token){
                 setUser(response.data.user)
                 localStorage.setItem('token', response.data.token)
+                console.log(response.data.token)
                 api.defaults.headers.common['authorization-token'] = response.data.token
                 return true
             }
