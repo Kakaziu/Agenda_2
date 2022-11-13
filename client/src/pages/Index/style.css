@@ -10,6 +10,7 @@
 .header nav ul{
     list-style: none;
     display: flex;
+    align-items: center;
 }
 
 .header nav ul li{
@@ -22,12 +23,28 @@
     color: white;
 }
 
-.header nav ul li button{
+.out-btn{
     background-color: transparent;
     font-size: 18px;
     color: white;
     border: none;
     cursor: pointer;
+}
+
+.add-btn{
+    background-color: white;
+    color: purple;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    font-size: 30px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.add-btn:hover{
+    transform: scale(1.1);
 }
 
 .content{

@@ -7,27 +7,27 @@ export const ContactContext = createContext()
 
 export function ContactProvider({ children }){
 
-    const loginContext = useContext(AuthContext)
     const [allContacts, setAllContacts] = useState([])
+    const [editContact, setEditContact] = useState(null)
     const [showModal, setShowModal] = useState(false)
 
     useEffect(() =>{
-        async function getAllContacts(){
-            try{
-                const response = await api.get('/contact/all')
-
-                if(response.status == 200){
-                    setAllContacts(response.data)
-                }
-            }catch(error){
-                console.log(error)
-            }
-        }
-
         setTimeout(() =>{
             getAllContacts()
         }, 500)
     }, []) 
+
+    async function getAllContacts(){
+        try{
+            const response = await api.get('/contact/all')
+
+            if(response.status == 200){
+                setAllContacts(response.data)
+            }
+        }catch(error){
+            console.log(error)
+        }
+    }
 
     async function registerContact(data){
         try{
@@ -42,9 +42,59 @@ export function ContactProvider({ children }){
         }
     }
 
+    async function deleteContact(id){
+        try{
+            const response = await api.delete(`/contact/delete/${id}`)
+
+            if(response.status === 200){
+                const filteredContacts = allContacts.filter(contact => contact._id !== response.data._id)
+
+                setAllContacts(filteredContacts)
+            }
+        }catch(e){
+            return 
+        }
+    }
+
+    async function handleEdit(data){
+        try{
+            const response = await api.put(`/contact/edit/${editContact._id}`, data)
+
+            if(response.status === 200){
+                await getAllContacts()
+                setEditContact(null)
+                return true
+            }
+        }catch(e){
+            return false
+        }
+    }
+
+    async function getContact(id){
+        try{
+            const response = await api.get(`/contact/one/${id}`)
+
+            if(response.status === 200){
+                setEditContact(response.data)
+                return true
+            }
+        }catch(e){
+            return false
+        }
+    }
 
     return(
-        <ContactContext.Provider value={{ allContacts, showModal, setShowModal, registerContact }}>
+        <ContactContext.Provider value={{ 
+            allContacts, 
+            showModal, 
+            editContact, 
+            setEditContact,
+            setShowModal, 
+            registerContact, 
+            deleteContact, 
+            getContact ,
+            handleEdit
+            }}>
             { children }
         </ContactContext.Provider>
     )

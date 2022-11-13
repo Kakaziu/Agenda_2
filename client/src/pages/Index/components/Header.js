@@ -18,8 +18,8 @@ function Header(){
                         
                         :
                         <>
-                        <li><button onClick={() => contactContext.setShowModal(true)}>Cadastrar contatos</button></li>
-                        <li><button onClick={() => loginContext.signout()}>Sair</button></li>
+                        <li><button className='out-btn' onClick={() => loginContext.signout()}>Sair</button></li>
+                        <li><button className='add-btn' onClick={() => contactContext.setShowModal(true)}>+</button></li>
                         </>
                         
                         }

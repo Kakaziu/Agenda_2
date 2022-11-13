@@ -5,7 +5,12 @@ import { ContactContext } from '../../../contexts/ContactContext'
 function Content(){
 
     const loginContext = useContext(AuthContext)
-    const { allContacts } = useContext(ContactContext)
+    const { allContacts, deleteContact, editContact, getContact, setShowModal, setEdit} = useContext(ContactContext)
+
+    function showEditModal(id){
+        getContact(id)
+        setShowModal(true)
+    }
 
     return(
         <>
@@ -27,8 +32,8 @@ function Content(){
                                     <td>{contact.lastName}</td>
                                     <td>{contact.email}</td>
                                     <td>{contact.phoneNumber}</td>
-                                    <td><button className='edit-btn'>Editar</button></td>
-                                    <td><button className='del-btn'>Deletar</button></td>
+                                    <td><button className='edit-btn' onClick={() => showEditModal(contact._id)}>Editar</button></td>
+                                    <td><button className='del-btn' onClick={() => deleteContact(contact._id)}>Deletar</button></td>
                                 </tr>
                             )
                         }) }
