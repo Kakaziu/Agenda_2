@@ -3,15 +3,24 @@ const Contact = require('../models/Contact')
 exports.read = async (req, res) =>{
     try{
         const allContacts = await Contact.getAll()
+        const contactsUser = allContacts.filter(contact =>{
+            return contact.createBy === req.user
+        })
 
-        return res.json(allContacts)
+        return res.json(contactsUser)
     }catch(error){
         return res.status(500).json({ error })
     }
 }
 
 exports.register = async (req, res) =>{
-    const contact = new Contact(req.body)
+    const contact = new Contact({
+        name: req.body.name,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        phoneNumber: req.body.phoneNumber,
+        createBy: req.user
+    })
 
     try{   
         await contact.register()

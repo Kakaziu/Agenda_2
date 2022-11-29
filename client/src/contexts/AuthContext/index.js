@@ -34,7 +34,6 @@ export function AuthProvider({ children }){
             if(response.data.user && response.data.token){
                 setUser(response.data.user)
                 localStorage.setItem('token', response.data.token)
-                console.log(response.data.token)
                 api.defaults.headers.common['authorization-token'] = response.data.token
                 return true
             }

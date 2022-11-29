@@ -27,7 +27,7 @@ function Content(){
                     <table className='table'>
                         { allContacts.map(contact =>{
                             return(
-                                <tr>
+                                <tr key={contact._id}>
                                     <td>{contact.name}</td>
                                     <td>{contact.lastName}</td>
                                     <td>{contact.email}</td>

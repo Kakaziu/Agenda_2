@@ -1,7 +1,6 @@
 import { createContext, useContext } from "react";
 import api from '../../services/api'
 import { useEffect, useState } from 'react'
-import { AuthContext } from "../AuthContext";
 
 export const ContactContext = createContext()
 
@@ -21,7 +20,7 @@ export function ContactProvider({ children }){
         try{
             const response = await api.get('/contact/all')
 
-            if(response.status == 200){
+            if(response.status === 200){
                 setAllContacts(response.data)
             }
         }catch(error){

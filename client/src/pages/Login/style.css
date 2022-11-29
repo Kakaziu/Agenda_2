@@ -1,0 +1,9 @@
+.registerLink{
+    margin-top: 20px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.registerLink a{
+    text-decoration: none;
+}

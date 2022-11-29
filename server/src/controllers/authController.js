@@ -6,7 +6,7 @@ module.exports = (req, res, next) =>{
 
     try{
         const userVerified = jwt.verify(token, process.env.SECRET)
-        req.user = userVerified
+        req.user = userVerified.id
 
         next()
     }catch(error){
