@@ -35,7 +35,7 @@
 }
 
 .form label{
-    font-size: 18px;
+    font-size: 17px;
     margin-bottom: 10px;
     margin-left: 10px;
     color: rgb(153, 153, 153);
@@ -116,4 +116,34 @@
     }
 
    
+}
+
+@media (max-width: 460px){
+    .form{
+        width: 90%;
+        padding: 20px;
+    }
+
+    .titleCamp h2{
+        font-size: 25px;
+    }
+
+    .titleCamp p{
+        font-size: 16px;
+    }
+
+    .form label{
+        font-size: 15px;
+    }
+
+    .form input{
+        font-size: 15px;
+        padding: 8px 15px;
+    }
+
+    .form button{
+        font-size: 16px;
+        background-color: purple;
+        color: white;
+    }
 }

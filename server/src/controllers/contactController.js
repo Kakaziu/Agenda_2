@@ -52,7 +52,7 @@ exports.edit = async (req, res) =>{
     try{
         await contact.edit(id)
 
-        if(contact.errors.length > 0) return res.status(400).json({ errors: contact.contact })
+        if(contact.errors.length > 0) return res.status(400).json({ errors: contact.errors })
 
         return res.json({ message: 'Contato editado.' })
     }catch(error){
