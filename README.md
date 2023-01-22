@@ -42,4 +42,10 @@
 
 ---
 
+## Rodando a aplicação
+
+Para testar a aplicação por você mesmo só acessar [aqui](https://effulgent-palmier-82046d.netlify.app/)
+
+---
+
 Obrigado a atenção de quem veio até aqui 🧡 | [Linkedin](https://www.linkedin.com/in/kau%C3%A3-borba-390946235/) 
