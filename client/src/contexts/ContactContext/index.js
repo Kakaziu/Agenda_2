@@ -1,6 +1,7 @@
 import { createContext, useContext } from "react";
 import api from '../../services/api'
 import { useEffect, useState } from 'react'
+import { AuthContext } from "../AuthContext";
 
 export const ContactContext = createContext()
 
@@ -9,12 +10,13 @@ export function ContactProvider({ children }){
     const [allContacts, setAllContacts] = useState([])
     const [editContact, setEditContact] = useState(null)
     const [showModal, setShowModal] = useState(false)
+    const { loading } = useContext(AuthContext)
 
     useEffect(() =>{
-        setTimeout(() =>{
+        if(!loading){
             getAllContacts()
-        }, 500)
-    }, []) 
+        }
+    }, [loading]) 
 
     async function getAllContacts(){
         try{
@@ -86,7 +88,7 @@ export function ContactProvider({ children }){
         <ContactContext.Provider value={{ 
             allContacts, 
             showModal, 
-            editContact, 
+            editContact,
             setEditContact,
             setShowModal, 
             registerContact, 

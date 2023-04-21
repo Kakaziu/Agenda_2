@@ -6,6 +6,7 @@ export const AuthContext = createContext()
 export function AuthProvider({ children }){
 
     const [user, setUser] = useState(null)
+    const [loading, setLoading] = useState(true)
     
     useEffect(() =>{
         async function persistLogin(){
@@ -15,6 +16,7 @@ export function AuthProvider({ children }){
                 const response = await api.post('/user/validate', {token})
                 api.defaults.headers.common['authorization-token'] = token
                 setUser(response.data)
+                setLoading(false)
             }
         }
 
@@ -48,7 +50,7 @@ export function AuthProvider({ children }){
     }
 
     return(
-        <AuthContext.Provider value={{ user, signin, signout}}>
+        <AuthContext.Provider value={{ user, signin, signout, loading}}>
             { children }
         </AuthContext.Provider>
     )
