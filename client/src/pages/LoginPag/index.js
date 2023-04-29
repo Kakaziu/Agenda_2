@@ -52,7 +52,7 @@ function LoginPag(){
             <form className="form" onSubmit={handleSubmit}>
                 <div className='titleCamp'>
                     <h2>Agenda</h2>
-                    <p>Cadastre-se no sistema</p>
+                    <p>Faça Login no sistema</p>
                 </div>
 
                <div className="camp">
@@ -66,7 +66,7 @@ function LoginPag(){
                     <p className='errorMessage'>{inputPassword.error}</p>
                </div>
 
-               <button>Cadastrar</button>
+               <button>Login</button>
 
                <span>Não tem cadastro ainda? <Link to='/register'>Cadastre-se</Link></span>
             </form>
